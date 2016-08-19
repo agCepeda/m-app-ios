@@ -1,0 +1,536 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CDE1F3431D66B611004315BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE1F3421D66B611004315BB /* main.m */; };
+		CDE1F3461D66B611004315BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE1F3451D66B611004315BB /* AppDelegate.m */; };
+		CDE1F3491D66B611004315BB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE1F3481D66B611004315BB /* ViewController.m */; };
+		CDE1F34C1D66B611004315BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDE1F34A1D66B611004315BB /* Main.storyboard */; };
+		CDE1F34F1D66B611004315BB /* Meishii.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CDE1F34D1D66B611004315BB /* Meishii.xcdatamodeld */; };
+		CDE1F3511D66B611004315BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDE1F3501D66B611004315BB /* Assets.xcassets */; };
+		CDE1F3541D66B611004315BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDE1F3521D66B611004315BB /* LaunchScreen.storyboard */; };
+		CDE1F35F1D66B612004315BB /* MeishiiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE1F35E1D66B612004315BB /* MeishiiTests.m */; };
+		CDE1F36A1D66B612004315BB /* MeishiiUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE1F3691D66B612004315BB /* MeishiiUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CDE1F35B1D66B612004315BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDE1F3361D66B611004315BB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CDE1F33D1D66B611004315BB;
+			remoteInfo = Meishii;
+		};
+		CDE1F3661D66B612004315BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDE1F3361D66B611004315BB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CDE1F33D1D66B611004315BB;
+			remoteInfo = Meishii;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CDE1F33E1D66B611004315BB /* Meishii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meishii.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDE1F3421D66B611004315BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CDE1F3441D66B611004315BB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CDE1F3451D66B611004315BB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CDE1F3471D66B611004315BB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		CDE1F3481D66B611004315BB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CDE1F34B1D66B611004315BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CDE1F34E1D66B611004315BB /* Meishii.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Meishii.xcdatamodel; sourceTree = "<group>"; };
+		CDE1F3501D66B611004315BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CDE1F3531D66B611004315BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CDE1F3551D66B611004315BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDE1F35A1D66B612004315BB /* MeishiiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeishiiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDE1F35E1D66B612004315BB /* MeishiiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeishiiTests.m; sourceTree = "<group>"; };
+		CDE1F3601D66B612004315BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDE1F3651D66B612004315BB /* MeishiiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeishiiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDE1F3691D66B612004315BB /* MeishiiUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeishiiUITests.m; sourceTree = "<group>"; };
+		CDE1F36B1D66B612004315BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CDE1F33B1D66B611004315BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDE1F3571D66B612004315BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDE1F3621D66B612004315BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CDE1F3351D66B611004315BB = {
+			isa = PBXGroup;
+			children = (
+				CDE1F3401D66B611004315BB /* Meishii */,
+				CDE1F35D1D66B612004315BB /* MeishiiTests */,
+				CDE1F3681D66B612004315BB /* MeishiiUITests */,
+				CDE1F33F1D66B611004315BB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CDE1F33F1D66B611004315BB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CDE1F33E1D66B611004315BB /* Meishii.app */,
+				CDE1F35A1D66B612004315BB /* MeishiiTests.xctest */,
+				CDE1F3651D66B612004315BB /* MeishiiUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CDE1F3401D66B611004315BB /* Meishii */ = {
+			isa = PBXGroup;
+			children = (
+				CDE1F3441D66B611004315BB /* AppDelegate.h */,
+				CDE1F3451D66B611004315BB /* AppDelegate.m */,
+				CDE1F3471D66B611004315BB /* ViewController.h */,
+				CDE1F3481D66B611004315BB /* ViewController.m */,
+				CDE1F34A1D66B611004315BB /* Main.storyboard */,
+				CDE1F3501D66B611004315BB /* Assets.xcassets */,
+				CDE1F3521D66B611004315BB /* LaunchScreen.storyboard */,
+				CDE1F3551D66B611004315BB /* Info.plist */,
+				CDE1F34D1D66B611004315BB /* Meishii.xcdatamodeld */,
+				CDE1F3411D66B611004315BB /* Supporting Files */,
+			);
+			path = Meishii;
+			sourceTree = "<group>";
+		};
+		CDE1F3411D66B611004315BB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CDE1F3421D66B611004315BB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CDE1F35D1D66B612004315BB /* MeishiiTests */ = {
+			isa = PBXGroup;
+			children = (
+				CDE1F35E1D66B612004315BB /* MeishiiTests.m */,
+				CDE1F3601D66B612004315BB /* Info.plist */,
+			);
+			path = MeishiiTests;
+			sourceTree = "<group>";
+		};
+		CDE1F3681D66B612004315BB /* MeishiiUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CDE1F3691D66B612004315BB /* MeishiiUITests.m */,
+				CDE1F36B1D66B612004315BB /* Info.plist */,
+			);
+			path = MeishiiUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CDE1F33D1D66B611004315BB /* Meishii */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDE1F36E1D66B612004315BB /* Build configuration list for PBXNativeTarget "Meishii" */;
+			buildPhases = (
+				CDE1F33A1D66B611004315BB /* Sources */,
+				CDE1F33B1D66B611004315BB /* Frameworks */,
+				CDE1F33C1D66B611004315BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Meishii;
+			productName = Meishii;
+			productReference = CDE1F33E1D66B611004315BB /* Meishii.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CDE1F3591D66B612004315BB /* MeishiiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDE1F3711D66B612004315BB /* Build configuration list for PBXNativeTarget "MeishiiTests" */;
+			buildPhases = (
+				CDE1F3561D66B612004315BB /* Sources */,
+				CDE1F3571D66B612004315BB /* Frameworks */,
+				CDE1F3581D66B612004315BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CDE1F35C1D66B612004315BB /* PBXTargetDependency */,
+			);
+			name = MeishiiTests;
+			productName = MeishiiTests;
+			productReference = CDE1F35A1D66B612004315BB /* MeishiiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CDE1F3641D66B612004315BB /* MeishiiUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDE1F3741D66B612004315BB /* Build configuration list for PBXNativeTarget "MeishiiUITests" */;
+			buildPhases = (
+				CDE1F3611D66B612004315BB /* Sources */,
+				CDE1F3621D66B612004315BB /* Frameworks */,
+				CDE1F3631D66B612004315BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CDE1F3671D66B612004315BB /* PBXTargetDependency */,
+			);
+			name = MeishiiUITests;
+			productName = MeishiiUITests;
+			productReference = CDE1F3651D66B612004315BB /* MeishiiUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CDE1F3361D66B611004315BB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Develop Mx";
+				TargetAttributes = {
+					CDE1F33D1D66B611004315BB = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					CDE1F3591D66B612004315BB = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = CDE1F33D1D66B611004315BB;
+					};
+					CDE1F3641D66B612004315BB = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = CDE1F33D1D66B611004315BB;
+					};
+				};
+			};
+			buildConfigurationList = CDE1F3391D66B611004315BB /* Build configuration list for PBXProject "Meishii" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CDE1F3351D66B611004315BB;
+			productRefGroup = CDE1F33F1D66B611004315BB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CDE1F33D1D66B611004315BB /* Meishii */,
+				CDE1F3591D66B612004315BB /* MeishiiTests */,
+				CDE1F3641D66B612004315BB /* MeishiiUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CDE1F33C1D66B611004315BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDE1F3541D66B611004315BB /* LaunchScreen.storyboard in Resources */,
+				CDE1F3511D66B611004315BB /* Assets.xcassets in Resources */,
+				CDE1F34C1D66B611004315BB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDE1F3581D66B612004315BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDE1F3631D66B612004315BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CDE1F33A1D66B611004315BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDE1F34F1D66B611004315BB /* Meishii.xcdatamodeld in Sources */,
+				CDE1F3491D66B611004315BB /* ViewController.m in Sources */,
+				CDE1F3461D66B611004315BB /* AppDelegate.m in Sources */,
+				CDE1F3431D66B611004315BB /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDE1F3561D66B612004315BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDE1F35F1D66B612004315BB /* MeishiiTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDE1F3611D66B612004315BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDE1F36A1D66B612004315BB /* MeishiiUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CDE1F35C1D66B612004315BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CDE1F33D1D66B611004315BB /* Meishii */;
+			targetProxy = CDE1F35B1D66B612004315BB /* PBXContainerItemProxy */;
+		};
+		CDE1F3671D66B612004315BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CDE1F33D1D66B611004315BB /* Meishii */;
+			targetProxy = CDE1F3661D66B612004315BB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CDE1F34A1D66B611004315BB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDE1F34B1D66B611004315BB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CDE1F3521D66B611004315BB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDE1F3531D66B611004315BB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CDE1F36C1D66B612004315BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CDE1F36D1D66B612004315BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CDE1F36F1D66B612004315BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Meishii/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = doggggasdadsadasdasd.Meishii;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CDE1F3701D66B612004315BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Meishii/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = doggggasdadsadasdasd.Meishii;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		CDE1F3721D66B612004315BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MeishiiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = doggggasdadsadasdasd.MeishiiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Meishii.app/Meishii";
+			};
+			name = Debug;
+		};
+		CDE1F3731D66B612004315BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MeishiiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = doggggasdadsadasdasd.MeishiiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Meishii.app/Meishii";
+			};
+			name = Release;
+		};
+		CDE1F3751D66B612004315BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MeishiiUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = doggggasdadsadasdasd.MeishiiUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Meishii;
+			};
+			name = Debug;
+		};
+		CDE1F3761D66B612004315BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MeishiiUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = doggggasdadsadasdasd.MeishiiUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Meishii;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CDE1F3391D66B611004315BB /* Build configuration list for PBXProject "Meishii" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDE1F36C1D66B612004315BB /* Debug */,
+				CDE1F36D1D66B612004315BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CDE1F36E1D66B612004315BB /* Build configuration list for PBXNativeTarget "Meishii" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDE1F36F1D66B612004315BB /* Debug */,
+				CDE1F3701D66B612004315BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CDE1F3711D66B612004315BB /* Build configuration list for PBXNativeTarget "MeishiiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDE1F3721D66B612004315BB /* Debug */,
+				CDE1F3731D66B612004315BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CDE1F3741D66B612004315BB /* Build configuration list for PBXNativeTarget "MeishiiUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDE1F3751D66B612004315BB /* Debug */,
+				CDE1F3761D66B612004315BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CDE1F34D1D66B611004315BB /* Meishii.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CDE1F34E1D66B611004315BB /* Meishii.xcdatamodel */,
+			);
+			currentVersion = CDE1F34E1D66B611004315BB /* Meishii.xcdatamodel */;
+			path = Meishii.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = CDE1F3361D66B611004315BB /* Project object */;
+}
