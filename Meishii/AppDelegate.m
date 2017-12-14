@@ -7,6 +7,15 @@
 //
 
 #import "AppDelegate.h"
+#import "SplashViewController.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+
+@import UserNotifications;
+
+#import "Notification.h"
+
+#define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 @interface AppDelegate ()
 
@@ -17,7 +26,101 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //_window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"fondoapp.jpg"]];
+    
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
+    [FBSDKLoginButton class];
+    
+    [self setupApi];
+    
+    UIStoryboard* mainStoryBoard  = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController* vController = [mainStoryBoard instantiateViewControllerWithIdentifier:@"SplashViewController"];
+    [[[UIApplication sharedApplication] keyWindow] setRootViewController:vController];
+    
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
+        UIUserNotificationType allNotificationTypes =
+        (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings =
+        [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    } else {
+        // iOS 10 or later
+#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+        // For iOS 10 display notification (sent via APNS)
+        [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+        UNAuthorizationOptions authOptions =
+        UNAuthorizationOptionAlert
+        | UNAuthorizationOptionSound
+        | UNAuthorizationOptionBadge;
+        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        }];
+#endif
+    }
+    
+    [FIRApp configure];
+    [[FIRMessaging messaging] setRemoteMessageDelegate:self];
+    
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
     return YES;
+}
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    
+    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                                  openURL:url
+                                                        sourceApplication:sourceApplication
+                                                               annotation:annotation
+                    ];
+    
+    if ([url.scheme isEqualToString:@"meisshi"]) {
+        NSString* queryString = url.query;
+        NSString* userId      = [queryString componentsSeparatedByString:@"="][1];
+        
+        _openUserId = userId;
+        
+        return YES;
+    }
+    // Add any custom logic here.
+    return handled;
+}
+
+- (void) setupApi {
+    NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
+    NSString* sessionToken      = [preferences objectForKey:@"SESSION_TOKEN"];
+    
+    // NSString* baseUrl = @"http://192.168.1.71/MeisshiApi/";
+    
+    NSString* baseUrl = @"http://meisshi.com/api_v2/";
+    _api = [[MeisshiApi alloc] initWithBaseUrl:baseUrl andSessionToken:sessionToken];
+    
+    //[self initPushNotification:nil];
+}
+
+- (void) initPushNotification: (NSString *) token {
+    [_api pushNotificationsWithToken:token callback:^(NSDictionary *responseObject, NSError *error) {
+        if (!error) {
+            /*
+            NSString* token = [responseObject objectForKey:@"token"];
+            NSArray* notifications = [responseObject objectForKey:@"notifications"];
+            
+            NSLog(@"No notifications: %d", notifications.count);
+            //
+            for(Notification* notification in notifications) {
+                [[NSNotificationCenter defaultCenter] postNotificationName: @"TestNotification"
+                                                                    object: self];
+            }
+            //
+            [self initPushNotification:token];
+            */
+        }
+    }];
+}
+
+-(UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    return UIInterfaceOrientationMaskAll;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -36,12 +139,18 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [FBSDKAppEvents activateApp];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+
++ (AppDelegate*) sharedInstance {
+    return (AppDelegate*) [UIApplication sharedApplication].delegate;
 }
 
 #pragma mark - Core Data stack
@@ -109,6 +218,18 @@
     return _managedObjectContext;
 }
 
+/*
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation];
+}
+*/
+
 #pragma mark - Core Data Saving support
 
 - (void)saveContext {
@@ -122,6 +243,74 @@
             abort();
         }
     }
+}
+
+-(void) requestForAuthorizationNotification {
+    /*UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound)
+                          completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                              // Enable or disable features based on authorization.
+                              if (granted) {
+                                  [[UIApplication sharedApplication] registerForRemoteNotifications];
+                              }
+                          }];
+    */
+    //[center setDelegate:self];
+}
+
+#pragma mark - Notification
+
+-(void)applicationReceivedRemoteMessage:(FIRMessagingRemoteMessage *)remoteMessage {
+}
+
+// [START receive_message]
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    // If you are receiving a notification message while your app is in the background,
+    // this callback will not be fired till the user taps on the notification launching the application.
+    // TODO: Handle data of notification
+    
+    // With swizzling disabled you must let Messaging know about the message, for Analytics
+    // [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
+    
+    
+    // Print full message.
+    NSLog(@"%@", userInfo);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    // If you are receiving a notification message while your app is in the background,
+    // this callback will not be fired till the user taps on the notification launching the application.
+    // TODO: Handle data of notification
+    
+    // With swizzling disabled you must let Messaging know about the message, for Analytics
+    // [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
+    
+
+    // Print full message.
+    NSLog(@"%@", userInfo);
+    
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Unable to register for remote notifications: %@", error);
+}
+
+// This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
+// If swizzling is disabled then this function must be implemented so that the APNs device token can be paired to
+// the FCM registration token.
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@"APNs device token retrieved: %@", deviceToken);
+    // With swizzling disabled you must set the APNs device token here.
+    // [FIRMessaging messaging].APNSToken = deviceToken;
+}
+
+-(User *)user {
+    if (_session) {
+        return _session.user;
+    }
+    return nil;
 }
 
 @end
