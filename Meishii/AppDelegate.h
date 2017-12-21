@@ -12,10 +12,11 @@
 #import "Session.h"
 #import "User.h"
 #import "MeisshiApi.h"
+#import <UserNotifications/UNUserNotificationCenter.h>
 @import Firebase;
 
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, FIRMessagingDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, FIRMessagingDelegate, UNUserNotificationCenterDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

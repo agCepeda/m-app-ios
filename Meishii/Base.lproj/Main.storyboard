@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -952,7 +952,7 @@ Followers</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0AS-az-Ze4">
-                                                    <rect key="frame" x="62" y="15" width="250" height="150"/>
+                                                    <rect key="frame" x="62.5" y="15" width="250" height="150"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqy-CC-Ftd">
                                                             <rect key="frame" x="0.0" y="100" width="100" height="50"/>
@@ -1692,7 +1692,7 @@ Followers</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view tag="1000" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iba-sP-8eE">
-                                            <rect key="frame" x="38" y="15" width="300" height="169"/>
+                                            <rect key="frame" x="37.5" y="15" width="300" height="169"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oCf-Wm-U3X">
                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="169"/>
@@ -1856,7 +1856,7 @@ Followers</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pm3-9V-sea" customClass="MeisshiListItem">
-                                                    <rect key="frame" x="-0.5" y="0.0" width="375" height="240"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
@@ -1924,7 +1924,7 @@ Followers</string>
             <objects>
                 <tabBarController storyboardIdentifier="MainViewController" id="ITX-bt-bXl" customClass="MainViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="3pe-m0-Z0Y">
-                        <barButtonItem key="leftBarButtonItem" image="notificacion_icon.png" id="QcH-Yx-uiF">
+                        <barButtonItem key="leftBarButtonItem" image="notification_icon.png" id="QcH-Yx-uiF">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="kZa-Y3-Q7I" kind="show" identifier="showNotificationController" id="bX5-hX-M96"/>
@@ -3442,10 +3442,10 @@ Followers</string>
         <image name="meisshibox_icon.png" width="30" height="30"/>
         <image name="mycard_icon.png" width="30" height="30"/>
         <image name="name.png" width="60" height="60"/>
-        <image name="notificacion_icon.png" width="30" height="30"/>
+        <image name="notification_icon.png" width="20" height="20"/>
         <image name="profesion.png" width="60" height="60"/>
         <image name="profile_icon.png" width="30" height="30"/>
-        <image name="settings_icon.png" width="30" height="30"/>
+        <image name="settings_icon.png" width="20" height="20"/>
         <image name="telefono.png" width="60" height="60"/>
         <image name="twitter.png" width="60" height="60"/>
         <image name="web.png" width="60" height="60"/>

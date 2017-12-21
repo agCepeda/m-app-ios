@@ -43,8 +43,8 @@
 - (void) search: (NSString *) query
        callback: (void (^)(id, NSError *error)) callback;
 - (void) search: (NSString *) query
-           size: (NSInteger *) size
-           page: (NSInteger *) page
+           size: (NSString *) size
+           page: (NSString *) page
        callback: (void (^)(id, NSError *error)) callback;
 
 - (void) getUser: (NSString *) userId

@@ -321,16 +321,16 @@
 
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification {
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    /// UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     //self.scrollView.contentInset = contentInsets;
     //self.scrollView.scrollIndicatorInsets = contentInsets;
 }
 
 - (void)keyboardWasShown:(NSNotification*)aNotification {
-    
+    /*
     NSDictionary* info = [aNotification userInfo];
     CGRect kbRect = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    /*
+    
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbRect.size.height, 0.0);
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;

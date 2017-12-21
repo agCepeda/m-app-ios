@@ -178,17 +178,25 @@
     [task resume];
 }
 
--(void) search: (NSString *)query
-          size: (NSInteger *) size
-          page: (NSInteger *) page
+-(void) search: (NSString *) query
+          size: (NSString *) size
+          page: (NSString *) page
       callback: (void (^)(id, NSError *))callback {
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    
+    [params setObject:query forKey:@"q"];
+    
+    if (size) {
+        [params setObject:size forKey:@"size"];
+    }
+    if (page) {
+        [params setObject:page forKey:@"page"];
+    }
     
     NSMutableURLRequest * request = [[AFHTTPRequestSerializer serializer] requestWithMethod: @"GET"
                                                                                   URLString: [self serviceEndpoint:@"user"]
-                                                                                 parameters: @{ @"q" : query,
-                                                                                                @"page": page ? [NSString stringWithFormat:@"%ld", (long) page] : nil,
-                                                                                                @"size": size ? [NSString stringWithFormat:@"%ld", (long) size] : nil
-                                                                                                }
+                                                                                 parameters: params
                                                                                       error: nil];
     NSURLSessionDataTask* task = [_manager dataTaskWithRequest: request
                                              completionHandler: ^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {

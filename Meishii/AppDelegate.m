@@ -25,47 +25,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    
-    //_window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"fondoapp.jpg"]];
-    
-    [[FBSDKApplicationDelegate sharedInstance] application:application
-                             didFinishLaunchingWithOptions:launchOptions];
-    [FBSDKLoginButton class];
-    
     [self setupApi];
+    [self setupFacebook:application didFinishLaunchingWithOptions:launchOptions];
+    [self setupFirebase];
     
     UIStoryboard* mainStoryBoard  = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController* vController = [mainStoryBoard instantiateViewControllerWithIdentifier:@"SplashViewController"];
     [[[UIApplication sharedApplication] keyWindow] setRootViewController:vController];
     
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
-        UIUserNotificationType allNotificationTypes =
-        (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
-        UIUserNotificationSettings *settings =
-        [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    } else {
-        // iOS 10 or later
-#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-        // For iOS 10 display notification (sent via APNS)
-        [UNUserNotificationCenter currentNotificationCenter].delegate = self;
-        UNAuthorizationOptions authOptions =
-        UNAuthorizationOptionAlert
-        | UNAuthorizationOptionSound
-        | UNAuthorizationOptionBadge;
-        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
-        }];
-#endif
-    }
-    
-    [FIRApp configure];
-    [[FIRMessaging messaging] setRemoteMessageDelegate:self];
-    
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
-    
     return YES;
 }
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     
@@ -89,32 +59,53 @@
 
 - (void) setupApi {
     NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
-    NSString* sessionToken      = [preferences objectForKey:@"SESSION_TOKEN"];
+    NSString* sessionToken = [preferences objectForKey:@"SESSION_TOKEN"];
     
     // NSString* baseUrl = @"http://192.168.1.71/MeisshiApi/";
     
     NSString* baseUrl = @"http://meisshi.com/api_v2/";
-    _api = [[MeisshiApi alloc] initWithBaseUrl:baseUrl andSessionToken:sessionToken];
     
-    //[self initPushNotification:nil];
+    _api = [[MeisshiApi alloc] initWithBaseUrl:baseUrl andSessionToken:sessionToken];
 }
 
-- (void) initPushNotification: (NSString *) token {
-    [_api pushNotificationsWithToken:token callback:^(NSDictionary *responseObject, NSError *error) {
-        if (!error) {
-            /*
-            NSString* token = [responseObject objectForKey:@"token"];
-            NSArray* notifications = [responseObject objectForKey:@"notifications"];
+- (void) setupFacebook:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions  {
+    [[FBSDKApplicationDelegate sharedInstance] application: application
+                             didFinishLaunchingWithOptions: launchOptions];
+    
+    [FBSDKLoginButton class];
+}
+
+- (void) setupFirebase {
+    // [START configure_firebase]
+    [FIRApp configure];
+    // [END configure_firebase]
+    
+    // [START set_messaging_delegate]
+    [[FIRMessaging messaging] setRemoteMessageDelegate:self];
+    // [END set_messaging_delegate]
+    
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
+        UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    } else {
+        // iOS 10 or later
+        #if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+        // For iOS 10 display notification (sent via APNS)
+        [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+        UNAuthorizationOptions authOptions = UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge;
+        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        }];
+        #endif
+    }
+    
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+}
+
+- (void) regiterDeviceToken: (NSString *) token {
+    [_api updateDeviceToken:token callback:^(NSDictionary *response, NSError *error) {
+        if (! error) {
             
-            NSLog(@"No notifications: %d", notifications.count);
-            //
-            for(Notification* notification in notifications) {
-                [[NSNotificationCenter defaultCenter] postNotificationName: @"TestNotification"
-                                                                    object: self];
-            }
-            //
-            [self initPushNotification:token];
-            */
         }
     }];
 }
@@ -218,18 +209,6 @@
     return _managedObjectContext;
 }
 
-/*
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
-    return [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                          openURL:url
-                                                sourceApplication:sourceApplication
-                                                       annotation:annotation];
-}
-*/
-
 #pragma mark - Core Data Saving support
 
 - (void)saveContext {
@@ -258,9 +237,23 @@
     //[center setDelegate:self];
 }
 
+-(User *)user {
+    if (_session) {
+        return _session.user;
+    }
+    return nil;
+}
+
 #pragma mark - Notification
 
--(void)applicationReceivedRemoteMessage:(FIRMessagingRemoteMessage *)remoteMessage {
+// [START refresh_token]
+- (void)messaging:(FIRMessaging *)messaging didReceiveRegistrationToken:(NSString *)fcmToken {
+    NSLog(@"Firebase Token : %@", fcmToken);
+    [self.api updateDeviceToken:fcmToken callback:^(NSDictionary *response, NSError *error) {
+        if (! error) {
+            
+        }
+    }];
 }
 
 // [START receive_message]
@@ -276,6 +269,7 @@
     // Print full message.
     NSLog(@"%@", userInfo);
 }
+
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
@@ -295,22 +289,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     NSLog(@"Unable to register for remote notifications: %@", error);
-}
-
-// This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
-// If swizzling is disabled then this function must be implemented so that the APNs device token can be paired to
-// the FCM registration token.
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NSLog(@"APNs device token retrieved: %@", deviceToken);
-    // With swizzling disabled you must set the APNs device token here.
-    // [FIRMessaging messaging].APNSToken = deviceToken;
-}
-
--(User *)user {
-    if (_session) {
-        return _session.user;
-    }
-    return nil;
 }
 
 @end

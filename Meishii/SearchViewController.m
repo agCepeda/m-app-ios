@@ -17,8 +17,9 @@
 
 @interface SearchViewController () {
     UIRefreshControl* refreshControl;
-    NSInteger* page;
-    NSInteger* size;
+    int page;
+    int lastPage;
+    int size;
     NSString* query;
 }
 
@@ -38,26 +39,24 @@
     //}
     
     ///[refreshControl addTarget:self action:@selector(loadData) forControlEvents:UIControlEventValueChanged];
-    
+    page = 1;
     [self registerForKeyboardNotifications];
     [self loadContacts];
 }
 
 -(void) loadData {
-    
+    if (++page >= lastPage) {
+        return;
+    }
     
     [[AppDelegate sharedInstance].api search: query
-                                        size: (page ++)
-                                        page: size
+                                        size: nil
+                                        page: [NSString stringWithFormat:@"%d", ++page]
                                     callback:^(id responseObject, NSError *error) {
                                         if (!error) {
-                                            listContacts = [[NSMutableArray alloc] init];
-                                            
                                             for (NSDictionary* dicUser in [responseObject objectForKey:@"data"]) {
                                                 [listContacts addObject:[[User alloc] initWithDictionary: dicUser]];
                                             }
-                                            
-                                            NSLog(@"%@", responseObject);
                                             
                                             dispatch_async(dispatch_get_main_queue(), ^{
                                                 [self.tableCards reloadData];
@@ -66,10 +65,7 @@
                                             NSLog(@"%@", error);
                                         }
                                         [self.viewPlaceHolder setHidden:YES];
-                                        [refreshControl endRefreshing];
-                                        //[indicator stopAnimating];
                                     }];
-    //[indicator startAnimating];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,32 +76,30 @@
 
 - (void) loadContacts {
     
-    [self.viewPlaceHolder setHidden:NO];
+    //[self.viewPlaceHolder setHidden:NO];
     
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    indicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
-    indicator.center = self.viewPlaceHolder.center;
-    [self.view addSubview:indicator];
-    [indicator bringSubviewToFront:self.viewPlaceHolder];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
-    
+    //UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    //indicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
+    //indicator.center = self.viewPlaceHolder.center;
+    //[self.view addSubview:indicator];
+    //)[indicator bringSubviewToFront:self.viewPlaceHolder];
+    //[UIApplication sharedApplication].networkActivityIndicatorVisible = TRU
+    [_tableCards setContentOffset:CGPointZero animated:YES];
     listContacts = [[NSMutableArray alloc] init];
     
     query = _searchBar.text;
-    page = (NSInteger*) 1;
+    page = 1;
     
     [[AppDelegate sharedInstance].api search: query
-                                        size: page
-                                        page: size
+                                        size: nil
+                                        page: [NSString stringWithFormat:@"%d", page]
                                     callback:^(id responseObject, NSError *error) {
         if (!error) {
-            listContacts = [[NSMutableArray alloc] init];
-            
             for (NSDictionary* dicUser in [responseObject objectForKey:@"data"]) {
                 [listContacts addObject:[[User alloc] initWithDictionary: dicUser]];
             }
             
-            NSLog(@"%@", responseObject);
+            lastPage = [[responseObject objectForKey:@"last_page"] intValue];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableCards reloadData];
@@ -113,10 +107,7 @@
         } else {
             NSLog(@"%@", error);
         }
-        [self.viewPlaceHolder setHidden:YES];
-        [indicator stopAnimating];
-    }];
-    [indicator startAnimating];
+        [self.viewPlaceHolder setHidden:YES];    }];
 }
 
 
@@ -142,6 +133,12 @@
     });
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (listContacts.count - 1 == indexPath.row) {
+        [self loadData];
+    }
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -302,17 +299,6 @@
     else
     {
         NSLog(@"This device cannot send email");
-    }
-}
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat top = 0;
-    CGFloat bottom = scrollView.contentSize.height - scrollView.frame.size.height;
-    CGFloat buffer = 600;
-    CGFloat scrollPosition = scrollView.contentOffset.y;
-
-    if (scrollPosition > bottom - buffer) {
-        [self loadData];
     }
 }
 @end
